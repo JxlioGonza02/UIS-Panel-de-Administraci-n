@@ -11,7 +11,7 @@ function validarAcceso(event) {
     // Validación de credenciales
     if (correo === "@admin" && contrasena === "admin1234") {
         cajaError.style.display = "none";
-        window.location.href = "inicio.html";
+        window.location.href = "default.html";
     } else {
         // Muestra el mensaje de error
         cajaError.style.display = "block";
