@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIS - Gestión de Materias</title>
+    <link rel="stylesheet" href="inicio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar header-fijo">
+        <div class="logo-container">
+            <a href="inicio.html" style="text-decoration: none;">
+                <div class="logo-placeholder"><span class="logo-text">UIS</span></div>
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="dropdown">
+                <button class="nav-btn">Gestión de Usuarios <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="cordinador.html"><i class="fa-solid fa-user-tie"></i> Coordinadores</a>
+                    <a href="docente.html"><i class="fa-solid fa-chalkboard-user"></i> Docentes</a>
+                    <a href="estudiantes.html"><i class="fa-solid fa-user-graduate"></i> Estudiantes</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="nav-btn">Estructura Académica <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="facultades.html"><i class="fa-solid fa-building-columns"></i> Facultades</a>
+                    <a href="programas.html"><i class="fa-solid fa-folder-tree"></i> Programas</a>
+                    <a href="materias.html"><i class="fa-solid fa-book-bookmark"></i> Materias</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="nav-btn">Infraestructura e IoT <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="AulasSalones.html"><i class="fa-solid fa-door-open"></i> Aulas y Salones</a>
+                    <a href="SensorDeAsistencia.html"><i class="fa-solid fa-microchip"></i> Sensores de Asistencia</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="dropdown user-dropdown">
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <span class="username">Usuario <i class="fa-solid fa-caret-down"></i></span>
+            </div>
+            <div class="dropdown-content user-menu"> 
+                <a href="perfil.html"><i class="fa-solid fa-user-gear"></i> Mi Perfil</a>
+                <a href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                <hr class="menu-divider">
+                <a href="#" onclick="cerrarSesion(event)" class="btn-cerrar-sesion">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="content-box">
+            <section class="module-header">
+                <h1><i class="fa-solid fa-book-bookmark"></i> Gestión de Materias</h1>
+                <p>Configuración de asignaturas, docentes y horarios.</p>
+            </section>
+
+            <div class="action-bar">
+                <button class="btn-register" onclick="abrirModal('modalMateria')"><i class="fa-solid fa-plus"></i> Nueva Materia</button>
+            </div>
+
+            <div class="table-container">
+                <table class="custom-table" id="tablaMaterias">
+                    <thead>
+                        <tr>
+                            <th>Código</th><th>Materia</th><th>Docente</th><th>Horario</th><th>Aula</th><th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row-striped">
+                            <td>MAT-101</td><td>Cálculo Integral</td><td>Ing. Juan Pérez</td>
+                            <td><span class="badge-tag">Lun 07-09 AM</span></td><td>Aula 302</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit" onclick="editarFila(this)"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn-delete" onclick="eliminarFila(this)"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <footer class="system-status">
+                <div class="status-left">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Módulo de gestión de materias activo.</span>
+                </div>
+                <span class="badge-online">SISTEMA ONLINE</span>
+            </footer>
+        </div>
+    </main>
+
+    <div id="modalMateria" class="modal-overlay">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close-btn" onclick="cerrarModal('modalMateria')">&times;</span>
+            <h3>Registrar Materia</h3>
+            <form id="formRegistroMateria">
+                <div class="form-group"><label>Nombre de la Materia</label><div class="input-wrapper"><input type="text" id="inpNombreMat" required></div></div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group"><label>Docente</label><div class="input-wrapper"><input type="text" id="inpDocente" required></div></div>
+                    <div class="form-group"><label>Aula</label><div class="input-wrapper"><input type="text" id="inpAula" required></div></div>
+                </div>
+                <div class="form-group"><label>Horario</label><div class="input-wrapper"><input type="text" id="inpHorario" placeholder="Ej: Lun 07-09 AM" required></div></div>
+                <button type="submit" class="modal-btn">Guardar Materia</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+    
+    <footer class="bottom-bar">
+        <span>@UIS</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIS - Gestión de Coordinadores</title>
+    <link class="cssdeck" rel="stylesheet" href="inicio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar header-fijo">
+        <div class="logo-container">
+            <a href="inicio.html" style="text-decoration: none;">
+                <div class="logo-placeholder">
+                    <span class="logo-text">UIS</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="dropdown">
+                <button class="nav-btn">Gestión de Usuarios <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="cordinador.html"><i class="fa-solid fa-user-tie"></i> Coordinadores</a>
+                    <a href="docente.html"><i class="fa-solid fa-chalkboard-user"></i> Docentes</a>
+                    <a href="estudiantes.html"><i class="fa-solid fa-user-graduate"></i> Estudiantes</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="nav-btn">Estructura Académica <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="facultades.html"><i class="fa-solid fa-building-columns"></i> Facultades</a>
+                    <a href="Programas.html"><i class="fa-solid fa-folder-tree"></i> Programas</a>
+                    <a href="materias.html"><i class="fa-solid fa-book-bookmark"></i> Materias</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="nav-btn">Infraestructura e IoT <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="AulasSalones.html"><i class="fa-solid fa-door-open"></i> Aulas y Salones</a>
+                    <a href="SensorDeAsistencia.html"><i class="fa-solid fa-microchip"></i> Sensores de Asistencia</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="dropdown user-dropdown">
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <span class="username">Usuario <i class="fa-solid fa-caret-down"></i></span>
+            </div>
+            <div class="dropdown-content user-menu"> 
+                <a href="perfil.html"><i class="fa-solid fa-user-gear"></i> Mi Perfil</a>
+                <a href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                <hr class="menu-divider">
+                <a href="#" onclick="cerrarSesion(event)" class="btn-cerrar-sesion">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="content-box">
+            
+            <section class="module-header">
+                <h1><i class="fa-solid fa-user-tie"></i> Gestión de Coordinadores</h1>
+                <p>Módulo de administración para registrar, modificar y visualizar los coordinadores de los programas académicos de la UIS.</p>
+            </section>
+
+            <div class="action-bar">
+                <button class="btn-register" onclick="abrirModalRegistro()">
+                    <i class="fa-solid fa-user-plus"></i> Registrar Coordinador
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Identificación</th>
+                            <th>Nombre Completo</th>
+                            <th>Programa Asignado</th>
+                            <th>Correo Institucional</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-bold">11434567</td>
+                            <td>Julio González</td>
+                            <td><span class="badge badge-sistemas">Sistemas</span></td>
+                            <td>jgonzalez@uis.edu.co</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit" title="Editar" onclick="prepararEdicion(this)"><i class="fa-solid fa-user-pen"></i></button>
+                                <button class="btn-delete" title="Eliminar" onclick="eliminarFila(this)"><i class="fa-solid fa-user-minus"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="row-striped">
+                            <td class="text-bold">11434568</td>
+                            <td>kevin Zafra</td>
+                            <td><span class="badge badge-auditoria">Auditoría</span></td>
+                            <td>KZafras@uis.edu.co</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit" title="Editar" onclick="prepararEdicion(this)"><i class="fa-solid fa-user-pen"></i></button>
+                                <button class="btn-delete" title="Eliminar" onclick="eliminarFila(this)"><i class="fa-solid fa-user-minus"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <footer class="system-status">
+                <div class="status-left">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Módulo de auditoría de usuarios activo.</span>
+                </div>
+                <span class="badge-online">SISTEMA ONLINE</span>
+            </footer>
+
+        </div>
+    </main>
+
+    <footer class="bottom-bar">
+        <span>@UIS</span>
+    </footer>
+
+    <div id="modalRegistro" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModalRegistro()">&times;</span>
+            <h3><i class="fa-solid fa-user-plus"></i> Registrar Nuevo Coordinador</h3>
+            <p>Introduce los datos personales y el programa correspondiente.</p>
+            
+            <form id="formRegistroCoordinador" onsubmit="guardarCoordinador(event)">
+                <div class="form-group">
+                    <label for="regIdentificacion">Identificación</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" id="regIdentificacion" placeholder="Ej: 11434569" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regNombre">Nombre Completo</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="regNombre" placeholder="Ej: Carlos Pérez" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regPrograma">Programa Académico</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <input type="text" id="regPrograma" placeholder="Ej: Sistemas o Auditoría" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regCorreo">Correo Institucional</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="regCorreo" placeholder="Ej: cperez@uis.edu.co" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="modal-btn">Guardar Registro</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalEdicion" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModalEdicion()">&times;</span>
+            <h3><i class="fa-solid fa-user-pen"></i> Editar Coordinador</h3>
+            <p>Modifica los campos necesarios del registro seleccionado.</p>
+            
+            <form id="formEdicionCoordinador" onsubmit="actualizarCoordinador(event)">
+                <div class="form-group">
+                    <label for="editIdentificacion">Identificación</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" id="editIdentificacion" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editNombre">Nombre Completo</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="editNombre" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editPrograma">Programa Académico</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <input type="text" id="editPrograma" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editCorreo">Correo Institucional</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="editCorreo" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="modal-btn">Actualizar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

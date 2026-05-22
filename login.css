@@ -1,0 +1,213 @@
+/* ==========================================
+   ESTILOS EXCLUSIVOS PARA LA PANTALLA DE LOGIN 
+   ========================================== */
+
+/* Reinicio global básico para evitar desbordamientos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.login-body {
+    /* GRADIENTE ANIMADO INTEGRADO */
+    background: linear-gradient(-45deg, #171169, #261f9c, #1a2a6c, #2c3e50);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.login-card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border-top: 5px solid #8a2be2; 
+    display: flex;
+    flex-direction: column;
+}
+
+.login-logo {
+    font-size: 32px;
+    font-weight: 800;
+    color: #261f9c;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.login-subtitle {
+    font-size: 13px;
+    color: #718096;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   DISEÑO DEL ERROR CORREGIDO (DENTRO DE LA TARJETA)
+   ========================================== */
+.error-alert {
+    display: none; 
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #f5c6cb;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.error-alert i {
+    margin-right: 6px;
+}
+
+/* ==========================================
+   ESTILOS DEL FORMULARIO Y CAMPOS
+   ========================================== */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    color: #4a5568;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 12px;
+    color: #a0aec0;
+    font-size: 14px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 12px 12px 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333333;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input-wrapper input:focus {
+    border-color: #261f9c;
+    box-shadow: 0 0 0 3px rgba(38, 31, 156, 0.1);
+}
+
+.forgot-password-wrapper {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.forgot-password-wrapper a {
+    color: #c0392b; 
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password-wrapper a:hover {
+    text-decoration: underline;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: #261f9c;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #171169;
+}
+
+.login-footer {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #a0aec0;
+}
+
+/* ==========================================
+   VENTANA FLOTANTE (MODAL RECUPERAR CONTRASEÑA)
+   ========================================== */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.modal-btn {
+    background-color: #261f9c; 
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIS - Sensores de Asistencia</title>
+    <link rel="stylesheet" href="inicio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar header-fijo">
+        <div class="logo-container">
+            <a href="inicio.html" style="text-decoration: none;">
+                <div class="logo-placeholder"><span class="logo-text">UIS</span></div>
+            </a>
+        </div>
+        <nav class="nav-menu">
+            <div class="dropdown">
+                <button class="nav-btn">Gestión de Usuarios <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="cordinador.html"><i class="fa-solid fa-user-tie"></i> Coordinadores</a>
+                    <a href="docente.html"><i class="fa-solid fa-chalkboard-user"></i> Docentes</a>
+                    <a href="estudiantes.html"><i class="fa-solid fa-user-graduate"></i> Estudiantes</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="nav-btn">Estructura Académica <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="facultades.html"><i class="fa-solid fa-building-columns"></i> Facultades</a>
+                    <a href="programas.html"><i class="fa-solid fa-folder-tree"></i> Programas</a>
+                    <a href="materias.html"><i class="fa-solid fa-book-bookmark"></i> Materias</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="nav-btn">Infraestructura e IoT <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="AulasSalones.html"><i class="fa-solid fa-door-open"></i> Aulas y Salones</a>
+                    <a href="SensorDeAsistencia.html"><i class="fa-solid fa-microchip"></i> Sensores de Asistencia</a>
+                </div>
+            </div>
+        </nav>
+        <div class="dropdown user-dropdown">
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <span class="username">Usuario <i class="fa-solid fa-caret-down"></i></span>
+            </div>
+            <div class="dropdown-content user-menu"> 
+                <a href="perfil.html"><i class="fa-solid fa-user-gear"></i> Mi Perfil</a>
+                <a href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                <hr class="menu-divider">
+                <a href="#" onclick="cerrarSesion(event)" class="btn-cerrar-sesion">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="content-box">
+            <section class="module-header">
+                <h1><i class="fa-solid fa-microchip"></i> Sensores de Asistencia</h1>
+                <p>Monitoreo en tiempo real del estado de los dispositivos IoT en cada aula.</p>
+            </section>
+
+            <div class="table-container">
+                <table class="custom-table" id="tablaSensores">
+                    <thead>
+                        <tr>
+                            <th>Aula</th><th>ID Sensor</th><th>Estado</th><th>Última Conexión</th><th>Batería/Señal</th><th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row-striped">
+                            <td>Aula 302</td><td>SN-8842-UIS</td>
+                            <td><span class="badge-tag" style="background: #2ecc71;">Activo</span></td>
+                            <td>Hace 2 min</td><td><i class="fa-solid fa-battery-full"></i> 95%</td>
+                            <td><button class="btn-edit" onclick="resetSensor(this)"><i class="fa-solid fa-arrows-rotate"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <footer class="system-status">
+                <div class="status-left">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <span>Módulo de gestión de docentes activo.</span>
+                </div>
+                <span class="badge-online">SISTEMA ONLINE</span>
+            </footer>
+        </div>
+    </main>
+
+    <footer class="bottom-bar"><span>@UIS</span></footer>
+    <script src="login.js"></script>
+</body>
+</html>

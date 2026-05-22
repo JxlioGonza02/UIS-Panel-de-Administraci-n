@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIS - Gestión de Docentes</title>
+    <link rel="stylesheet" href="inicio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar header-fijo">
+        <div class="logo-container">
+            <a href="inicio.html" style="text-decoration: none;">
+                <div class="logo-placeholder">
+                    <span class="logo-text">UIS</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="dropdown">
+                <button class="nav-btn">Gestión de Usuarios <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="cordinador.html"><i class="fa-solid fa-user-tie"></i> Coordinadores</a>
+                    <a href="docente.html"><i class="fa-solid fa-chalkboard-user"></i> Docentes</a>
+                    <a href="estudiantes.html"><i class="fa-solid fa-user-graduate"></i> Estudiantes</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="nav-btn">Estructura Académica <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="facultades.html"><i class="fa-solid fa-building-columns"></i> Facultades</a>
+                    <a href="Programas.html"><i class="fa-solid fa-folder-tree"></i> Programas</a>
+                    <a href="materias.html"><i class="fa-solid fa-book-bookmark"></i> Materias</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="nav-btn">Infraestructura e IoT <i class="fa-solid fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="AulasSalones.html"><i class="fa-solid fa-door-open"></i> Aulas y Salones</a>
+                    <a href="SensorDeAsistencia.html"><i class="fa-solid fa-microchip"></i> Sensores de Asistencia</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="dropdown user-dropdown">
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <span class="username">Usuario <i class="fa-solid fa-caret-down"></i></span>
+            </div>
+            <div class="dropdown-content user-menu"> 
+                <a href="perfil.html"><i class="fa-solid fa-user-gear"></i> Mi Perfil</a>
+                <a href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                <hr class="menu-divider">
+                <a href="#" onclick="cerrarSesion(event)" class="btn-cerrar-sesion">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="content-box">
+            
+            <section class="module-header">
+                <h1><i class="fa-solid fa-chalkboard-user"></i> Gestión de Docentes</h1>
+                <p>Módulo de administración para registrar, modificar y visualizar el personal docente de la institución.</p>
+            </section>
+
+            <div class="action-bar">
+                <button class="btn-register" onclick="abrirModalRegistroDocente()">
+                    <i class="fa-solid fa-user-plus"></i> Registrar Docente
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Identificación</th>
+                            <th>Nombre Completo</th>
+                            <th>Facultad / Área</th>
+                            <th>Correo Institucional</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-bold">10987654</td>
+                            <td>Carlos Mendoza</td>
+                            <td><span class="badge badge-sistemas">Ingenierías</span></td>
+                            <td>cmendoza@uis.edu.co</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit" title="Editar" onclick="prepararEdicionDocente(this)"><i class="fa-solid fa-user-pen"></i></button>
+                                <button class="btn-delete" title="Eliminar" onclick="eliminarFilaDocente(this)"><i class="fa-solid fa-user-minus"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="row-striped">
+                            <td class="text-bold">10987655</td>
+                            <td>Diana Aristizábal</td>
+                            <td><span class="badge badge-auditoria">Ciencias Humanas</span></td>
+                            <td>daristizabal@uis.edu.co</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit" title="Editar" onclick="prepararEdicionDocente(this)"><i class="fa-solid fa-user-pen"></i></button>
+                                <button class="btn-delete" title="Eliminar" onclick="eliminarFilaDocente(this)"><i class="fa-solid fa-user-minus"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <footer class="system-status">
+                <div class="status-left">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Módulo de gestión de docentes activo.</span>
+                </div>
+                <span class="badge-online">SISTEMA ONLINE</span>
+            </footer>
+
+        </div>
+    </main>
+
+    <div id="modalRegistroDocente" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModalRegistroDocente()">&times;</span>
+            <h3><i class="fa-solid fa-user-plus"></i> Registrar Nuevo Docente</h3>
+            <p>Introduce los datos personales y el área correspondiente.</p>
+            
+            <form id="formRegistroDocente" onsubmit="guardarDocente(event)">
+                <div class="form-group">
+                    <label for="docIdentificacion">Identificación</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" id="docIdentificacion" placeholder="Ej: 10987656" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="docNombre">Nombre Completo</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="docNombre" placeholder="Ej: Andrés Silva" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="docFacultad">Facultad / Área</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-building"></i>
+                        <input type="text" id="docFacultad" placeholder="Ej: Ingenierías o Ciencias" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="docCorreo">Correo Institucional</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="docCorreo" placeholder="Ej: asilva@uis.edu.co" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="modal-btn">Guardar Registro</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalEdicionDocente" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModalEdicionDocente()">&times;</span>
+            <h3><i class="fa-solid fa-user-pen"></i> Editar Docente</h3>
+            <p>Modifica los campos necesarios del docente seleccionado.</p>
+            
+            <form id="formEdicionDocente" onsubmit="actualizarDocente(event)">
+                <div class="form-group">
+                    <label for="editDocIdentificacion">Identificación</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" id="editDocIdentificacion" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDocNombre">Nombre Completo</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="editDocNombre" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDocFacultad">Facultad / Área</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-building"></i>
+                        <input type="text" id="editDocFacultad" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDocCorreo">Correo Institucional</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="editDocCorreo" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="modal-btn">Actualizar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+
+    <footer class="bottom-bar">
+        <span>@UIS</span>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,687 @@
+/* REGLAS GENERALES Y RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* Gris claro de fondo para resaltar el cuadro blanco */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* BARRA DE NAVEGACIÓN (NAVBAR) */
+.navbar {
+    background-color: #261f9c; /* El color azul exacto de tu diseño original */
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor del Logo con el borde lila */
+.logo-container {
+    background-color: #ccc; /* Fondo gris original de tu cuadro de logo */
+    width: 110px;
+    height: 85px;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    border-left: 3px solid #8a2be2; /* Borde lila exacto */
+    border-right: 3px solid #8a2be2;
+    border-bottom: 3px solid #8a2be2;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #261f9c;
+}
+
+/* Menú de Botones */
+.nav-menu {
+    display: flex;
+    gap: 15px;
+    margin-left: 150px; /* Espacio prudente para no solaparse con el logo */
+}
+
+/* Estilo idéntico de los Botones del Menú */
+.nav-btn {
+    background-color: #171169; /* Azul más oscuro de los botones individuales de tu captura */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px; /* Esquinas redondeadas idénticas */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-btn i {
+    font-size: 11px;
+}
+
+.nav-btn:hover {
+    background-color: #120d54;
+}
+
+/* Estilo del Botón de Usuario (Derecha) */
+.user-profile {
+    background-color: #171169;
+    padding: 8px 18px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.avatar {
+    width: 26px;
+    height: 26px;
+    background-color: #bdc3c7;
+    border-radius: 50%;
+}
+
+.username {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* COMPONENTE DESPLEGABLE (DROPDOWN) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 215px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    border-radius: 6px;
+    margin-top: 5px;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.dropdown-content a {
+    color: #333333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f0ff;
+    color: #261f9c;
+}
+
+.dropdown-content a i {
+    color: #64748b;
+    width: 16px;
+}
+
+/* Acción Hover: Muestra las opciones al pasar el mouse */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* CONTENEDOR CENTRAL */
+.main-container {
+    flex-grow: 1;
+    display: flex;
+    padding: 40px 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Cuadro Blanco Principal */
+.content-box {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 520px;
+    border-radius: 12px;
+    border: 1px solid #dcdde1;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Textos de Bienvenida */
+.welcome-header h1 {
+    color: #261f9c;
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.welcome-header h2 {
+    color: #8a2be2;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.welcome-header p {
+    color: #4a5568;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.instruction-text {
+    color: #718096 !important;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 30px 0;
+}
+
+/* REJILLA DE TARJETAS (DASHBOARD) */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.info-card {
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+}
+
+.info-card h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-card p {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.card-footer {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: auto;
+}
+
+/* Colores Dinámicos de Tarjetas según el Botón Superior */
+.card-blue { border-left: 4px solid #261f9c; }
+.card-blue h3, .card-blue .card-footer { color: #261f9c; }
+
+.card-purple { border-left: 4px solid #8a2be2; }
+.card-purple h3, .card-purple .card-footer { color: #8a2be2; }
+
+.card-cyan { border-left: 4px solid #00a8ff; }
+.card-cyan h3, .card-cyan .card-footer { color: #00a8ff; }
+
+
+/* BARRA DE ESTADO INFERIOR */
+.system-status {
+    background-color: #edf2f7;
+    border: 1px solid #e2e8f0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.status-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #4a5568;
+    font-size: 13px;
+    max-width: 82%;
+    line-height: 1.4;
+}
+
+.status-left i {
+    color: #261f9c;
+    font-size: 16px;
+}
+
+.badge-online {
+    font-size: 11px;
+    background-color: #4cd137;
+    color: #ffffff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+/* ==========================================
+   ESTILOS PARA EL MENÚ DESPLEGABLE DEL USUARIO 
+   ========================================== */
+
+/* Contenedor del perfil */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/* Alineación especial para que el menú caiga hacia la izquierda y no se corte */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-dropdown .user-menu {
+    right: 0;        /* Se alinea con el borde derecho del perfil */
+    left: auto;       /* Cancela la alineación por defecto de los otros botones */
+    min-width: 160px; /* Ancho cómodo para las opciones */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); /* Sombra elegante */
+}
+
+/* Línea divisoria dentro del menú */
+.menu-divider {
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    margin: 5px 0;
+}
+
+/* Botón de cerrar sesión específico */
+.dropdown-content .btn-cerrar-sesion {
+    color: #c0392b !important; /* Fuerza el color rojo */
+    font-weight: bold;
+}
+
+.dropdown-content .btn-cerrar-sesion:hover {
+    background-color: #fce4e4 !important; /* Fondo rojo suave al pasar el mouse */
+    color: #a93226 !important;
+}
+/* SOLUCIÓN AL CIERRE RÁPIDO DEL MENÚ */
+
+/* 1. Asegura que no haya espacio de separación arriba del menú */
+.user-dropdown .user-menu {
+    margin-top: 0; 
+}
+
+/* 2. El truco maestro: crea un puente invisible arriba del menú */
+.user-dropdown .user-menu::before {
+    content: '';
+    position: absolute;
+    top: -15px; /* Cubre el espacio vacío hacia arriba */
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: transparent; /* Es totalmente invisible */
+}
+/* ==========================================
+   REFUERZO PARA MANTENER LA BARRA PERFECTA
+   ========================================== */
+
+/* Asegura que el cuerpo de la página no tenga márgenes raros que achiquen la barra */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Fuerza a la barra a ocupar todo el ancho superior de la pantalla */
+.header-fijo {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Espaciado del contenedor principal para que no se pegue al techo */
+.main-container {
+    padding: 30px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Diseño base de la tabla para que se vea pulida dentro de la caja */
+table {
+    width: 100%;
+    margin-top: 15px;
+}
+
+table th, table td {
+    border: none !important; /* Quita bordes toscos de HTML antiguo */
+}
+/* ==========================================
+   ESTILOS PARA EL MÓDULO DE GESTIÓN (TABLAS)
+   ========================================== */
+
+/* Encabezado del módulo */
+.module-header {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.module-header h1 {
+    color: #261f9c;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+/* Barra del botón de registro */
+.action-bar {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.btn-register {
+    background-color: #261f9c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-register:hover {
+    background-color: #171169;
+}
+
+/* Contenedor responsivo de la tabla */
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+/* Estructura general de la tabla */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.custom-table th {
+    background-color: #261f9c;
+    color: white;
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 600;
+}
+
+.custom-table td {
+    padding: 12px 15px;
+    color: #333333;
+}
+
+/* Filas alternas y bordes */
+.custom-table tbody tr {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.row-striped {
+    background-color: #f8fafc;
+}
+
+.text-bold {
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Etiquetas (Badges) de carreras */
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.badge-sistemas {
+    background-color: #e3f2fd;
+    color: #1e88e5;
+}
+
+.badge-auditoria {
+    background-color: #f3e5f5;
+    color: #8e24aa;
+}
+
+/* Botones de acción (Editar / Eliminar) */
+.action-buttons {
+    text-align: center;
+    gap: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-edit {
+    background: none;
+    border: none;
+    color: #261f9c;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.1s;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: #c0392b;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.1s;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    transform: scale(1.15); /* Efecto de agrandado suave */
+}
+/* Asegura que el modal de registro use los mismos estilos del login */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #261f9c;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.modal-content p {
+    font-size: 13px;
+    color: #718096;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 26px;
+    cursor: pointer;
+    color: #a0aec0;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #c0392b;
+}
+
+.modal-btn {
+    background-color: #261f9c;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 15px;
+    transition: background-color 0.2s;
+}
+
+.modal-btn:hover {
+    background-color: #171169;
+}
+/* Asegura que el menú desplegable esté pegado al botón sin huecos */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Se posiciona justo donde termina el botón */
+    left: 0;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    z-index: 1000;
+    border-radius: 0 0 6px 6px;
+    margin-top: 0; /* ¡OJO! Si tenía por ejemplo 10px, cámbialo a 0 */
+}
+
+/* El truco del "puente invisible" con un pseudo-elemento */
+.dropdown::after {
+    content: '';
+    position: absolute;
+    bottom: -15px; /* Crea una zona invisible debajo del botón */
+    left: 0;
+    width: 100%;
+    height: 15px; /* Mide lo mismo que el supuesto hueco */
+    display: none;
+}
+
+/* Cuando pasas el mouse por el dropdown, mantén el puente activo */
+.dropdown:hover::after {
+    display: block;
+}
+
+/* Muestra el menú cuando el mouse está sobre el botón o sobre el puente */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/* Barra superior azul oscura */
+.navbar {
+    background-color: #1a1a7a; /* Azul oscuro de la imagen */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* Ajustes para el logo y menús */
+.nav-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: white; /* Texto blanco sobre fondo azul */
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* Ajuste del usuario a la derecha */
+.user-dropdown {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: white;
+}
+
+/* Ajuste para que el cuerpo no quede oculto tras la barra fija */
+body {
+    padding-top: 80px; 
+}
+.bottom-bar {
+    background-color: #1a1a7a; /* Mismo azul oscuro que la barra superior */
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+}
